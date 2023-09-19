@@ -40,4 +40,8 @@ public class BidListService {
 		if (bidListRepository.findById(bidList.getBidListId()).isPresent())
 			bidListRepository.delete(bidList);
 	}
+
+	public Optional<BidList> findById(Integer id) {
+		return bidListRepository.findById(id);
+	}
 }
