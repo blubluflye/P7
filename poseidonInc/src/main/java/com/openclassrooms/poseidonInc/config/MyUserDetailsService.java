@@ -10,10 +10,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.openclassrooms.poseidonInc.nnk.domain.User;
 import com.openclassrooms.poseidonInc.nnk.repositories.UserRepository;
 
+@Service
 public class MyUserDetailsService implements UserDetailsService{
 	
 	@Autowired
@@ -28,14 +30,9 @@ public class MyUserDetailsService implements UserDetailsService{
 			throw new UsernameNotFoundException("Invalid credentials!");
 		}
 		User user = userByUsername.get();
-		if(user == null || !user.getUsername().equals(username)) {
-			//throw
-			throw new UsernameNotFoundException("Invalid credentials!");
-		}
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		//add role as authority ( "ROLE_" + role from user ? to test)
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+		grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
 		return new MySecurityUser(user.getUsername(), user.getPassword(), true, true, true, true, grantedAuthorities, user.getUsername());
 	}
-
 }

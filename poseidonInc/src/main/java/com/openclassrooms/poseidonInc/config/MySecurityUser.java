@@ -22,13 +22,13 @@ public class MySecurityUser extends User{
 			Collection<? extends GrantedAuthority> authorities,
 			String firstName) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-		this.username = firstName;
+		this.firstname = firstName;
 	}
 	
-	private String username;
+	private String firstname;
 	
 	@Override
 	public String toString() {
-		return "MySecurityUser firstName=" + username + "] " + super.toString();
+		return "MySecurityUser firstName=" + firstname + "] " + super.toString();
 	}
 }
