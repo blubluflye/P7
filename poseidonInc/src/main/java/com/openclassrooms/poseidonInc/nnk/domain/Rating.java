@@ -5,13 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
 	@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
@@ -19,4 +16,45 @@ public class Rating {
 	String sandPRating;
 	String fitchRating;
 	Integer orderNumber;
+	
+	public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public String getMoodysRating() {
+    	return moodysRating;
+    }
+    
+    public void setMoodysRating(String string) {
+    	moodysRating = string;
+    }
+    
+    public String getSandPRating() {
+    	return sandPRating;
+    }
+    
+    public void setSandPRating(String string) {
+    	sandPRating = string;
+    }
+    
+    public String getFitchRating() {
+    	return fitchRating;
+    }
+    public void setFitchRating(String string) {
+    	fitchRating = string;
+    }
+    
+    public Integer getOrderNumber() {
+    	return orderNumber;
+    }
+    
+    public void setOrderNumber(Integer integer) {
+    	orderNumber = integer;
+    }
+    
+    
 }
