@@ -15,8 +15,8 @@ public class CurvePoint {
 	@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-	@NotBlank(message = "must be not null")
-	Integer curveId;
+	/*@NotBlank(message = "must be not null")
+	Integer curveId;*/
 	Timestamp asOfDate;
 	Double term;
 	Double value;
@@ -31,13 +31,13 @@ public class CurvePoint {
     }
     
     
-    public Integer getCurveId() {
+    /*public Integer getCurveId() {
         return curveId;
     }
 
     public void setCurveId(Integer id) {
         this.curveId = id;
-    }
+    }*/
     
     public Timestamp getAsOfDate() {
     	return asOfDate;

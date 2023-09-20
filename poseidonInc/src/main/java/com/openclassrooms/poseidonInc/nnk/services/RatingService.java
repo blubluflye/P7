@@ -1,6 +1,7 @@
 package com.openclassrooms.poseidonInc.nnk.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +14,23 @@ public class RatingService {
 	@Autowired
 	private RatingRepository ratingRepo;
 
-	Rating create(Rating newRating) {
+	public Rating create(Rating newRating) {
 		return ratingRepo.save(newRating);
 	}
 	
-	Rating read(Integer id) {
-		return ratingRepo.getReferenceById(id);
+	public Optional<Rating> read(Integer id) {
+		return ratingRepo.findById(id);
 	}
 	
-	void delete(Integer id){
+	public void delete(Integer id){
 		ratingRepo.deleteById(id);
 	}
 	
-	Rating update(Rating updatedRating) {
+	public Rating update(Rating updatedRating) {
 		return ratingRepo.save(updatedRating);
 	}
 	
-	List<Rating> getAll() {
+	public List<Rating> getAll() {
 		return ratingRepo.findAll();
 	}
 }
