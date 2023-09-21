@@ -1,6 +1,7 @@
 package com.openclassrooms.poseidonInc.nnk.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,18 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.openclassrooms.poseidonInc.nnk.domain.RuleName;
+import com.openclassrooms.poseidonInc.nnk.services.RuleNameService;
 
 import jakarta.validation.Valid;
 
 
 @Controller
 public class RuleNameController {
-    // TODO: Inject RuleName service
+	@Autowired
+	RuleNameService ruleNameService;
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
-        // TODO: find all RuleName, add to model
+    	model.addAttribute("ruleNames", ruleNameService.findAll());
         return "ruleName/list";
     }
 
@@ -32,26 +35,34 @@ public class RuleNameController {
 
     @PostMapping("/ruleName/validate")
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return RuleName list
+    	if (!result.hasErrors()) {
+    		ruleNameService.create(ruleName);
+    		model.addAttribute("ruleNames", ruleNameService.findAll());
+    		return "redirect:/ruleName/list";
+    	}
         return "ruleName/add";
     }
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get RuleName by Id and to model then show to the form
+    	RuleName ruleName = ruleNameService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
 
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update RuleName and return RuleName list
+    	ruleNameService.update(ruleName);
+    	model.addAttribute("ruleNames", ruleNameService.findAll());
         return "redirect:/ruleName/list";
     }
 
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
+    	ruleNameService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	ruleNameService.delete(id);
+    	model.addAttribute("ruleNames", ruleNameService.findAll());
         return "redirect:/ruleName/list";
     }
 }
