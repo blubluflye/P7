@@ -1,5 +1,6 @@
 package com.openclassrooms.poseidonInc.nnk.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +10,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "rulename")
 public class RuleName {
-    // TODO: Map columns in data table RULENAME with corresponding java fields
 	@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
@@ -17,7 +17,9 @@ public class RuleName {
 	String description;
 	String json;
 	String template;
+	@Column(name="sqlstr")
 	String sqlStr;
+	@Column(name="sqlpart")
 	String sqlPart;
 	
 	public Integer getId() {

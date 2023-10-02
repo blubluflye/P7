@@ -2,6 +2,7 @@ package com.openclassrooms.poseidonInc.nnk.domain;
 
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,25 +16,38 @@ public class Trade {
 	//modify column name for id
 	@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name="tradeid")
     private Integer tradeId;
 	String account;
 	String type;
+	@Column(name="buyquantity")
 	Double buyQuantity;
+	@Column(name="sellquantity")
 	Double sellQuantity;
+	@Column(name="buyprice")
 	Double buyPrice;
+	@Column(name="sellprice")
 	Double sellPrice;
 	String benchmark;
+	@Column(name="tradedate")
 	Timestamp tradeDate;
 	String security;
 	String status;
 	String trader;
 	String book;
+	@Column(name="creationname")
 	String creationName;
+	@Column(name="creationdate")
 	Timestamp creationDate;
+	@Column(name="revisionname")
 	String revisionName;
+	@Column(name="revisiondate")
 	Timestamp revisionDate;
+	@Column(name="dealname")
 	String dealName;
+	@Column(name="dealtype")
 	String dealType;
+	@Column(name="sourcelistid")
 	String sourceListId;
 	String side;
 

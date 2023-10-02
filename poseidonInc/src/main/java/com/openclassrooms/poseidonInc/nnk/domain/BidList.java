@@ -19,40 +19,40 @@ import lombok.Data;
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields
 	@Id
-	@Column(name = "bid_list_id")
+	@Column(name = "bidlistid")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer BidListId;
 	@NotBlank(message = "Account is mandatory")
 	private String account;
 	@NotBlank(message = "type is mandatory")
 	private String type;
-	@Column(name="bid_quantity")
+	@Column(name="bidquantity")
 	private Double bidQuantity;
-	@Column(name="ask_quantity")
+	@Column(name="askquantity")
 	private Double askQuantity;
 	private Double bid;
 	private Double ask;
 	private String benchmark;
-	@Column(name="bid_list_date")
+	@Column(name="bidlistdate")
 	private Timestamp bidListDate;
 	private String commentary;
 	private String security;
 	private String status;
 	private String trader;
 	private String book;
-	@Column(name="creation_name")
+	@Column(name="creationname")
 	private String creationName;
-	@Column(name="creation_date")
+	@Column(name="creationdate")
 	private Timestamp creationDate;
-	@Column(name="revision_name")
+	@Column(name="revisionname")
 	private String revisionName;
-	@Column(name="revision_date")
+	@Column(name="revisiondate")
 	private Timestamp revisionDate;
-	@Column(name="deal_name")
+	@Column(name="dealname")
 	private String dealName;
-	@Column(name="deal_type")
+	@Column(name="dealtype")
 	private String dealType;
-	@Column(name="source_list_id")
+	@Column(name="sourcelistid")
 	private String sourceListId;
 	private String side;
 

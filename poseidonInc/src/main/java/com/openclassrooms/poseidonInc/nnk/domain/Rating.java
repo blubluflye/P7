@@ -1,5 +1,6 @@
 package com.openclassrooms.poseidonInc.nnk.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,9 +13,13 @@ public class Rating {
 	@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+	@Column(name="moodysrating")
 	String moodysRating;
+	@Column(name="sandprating")
 	String sandPRating;
+	@Column(name="fitchrating")
 	String fitchRating;
+	@Column(name="ordernumber")
 	Integer orderNumber;
 	
 	public Integer getId() {
