@@ -1,5 +1,7 @@
 package com.openclassrooms.poseidonInc.nnk.domain;
 
+import com.openclassrooms.poseidonInc.validation.ValidatePassword;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class User {
     @NotBlank(message = "Username is mandatory")
     private String username;
     @NotBlank(message = "Password is mandatory")
+    @ValidatePassword
     private String password;
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
