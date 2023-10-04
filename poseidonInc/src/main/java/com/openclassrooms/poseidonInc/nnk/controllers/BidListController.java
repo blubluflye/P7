@@ -48,7 +48,6 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
     	if (!result.hasErrors()) {
     		bidListService.createBid(bid);
-    		model.addAttribute("bidLists",bidListService.findAll());
     		return "redirect:/bidList/list";
     	}
         return "bidList/add";
@@ -64,9 +63,7 @@ public class BidListController {
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
     	bidListService.updateBid(bidList);
-    	model.addAttribute("bidLists",bidListService.findAll());
         return "redirect:/bidList/list";
     }
 
@@ -74,7 +71,6 @@ public class BidListController {
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
     	BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
     	bidListService.deleteBid(bidList);
-    	model.addAttribute("bidLists",bidListService.findAll());
         return "redirect:/bidList/list";
     }
 }

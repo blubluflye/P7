@@ -27,11 +27,10 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/css/*", "/").permitAll()
-                .requestMatchers("/user/*","/user/update/*","/user/delete/*").permitAll()
+                .requestMatchers("/user/*","/user/*/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
         )
         .formLogin((form) -> form
-                //.loginPage("/login")
                 .defaultSuccessUrl("/bidList/list",true)
         )
         .logout((logout) -> logout
