@@ -53,7 +53,7 @@ public class CurveController {
 
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	CurvePoint curvepoint =  curvePointService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
+    	CurvePoint curvepoint =  curvePointService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
     	model.addAttribute("curvePoint", curvepoint);
         return "curvePoint/update";
     }
@@ -68,7 +68,7 @@ public class CurveController {
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-    	curvePointService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
+    	curvePointService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
     	curvePointService.delete(id);
         return "redirect:/curvePoint/list";
     }

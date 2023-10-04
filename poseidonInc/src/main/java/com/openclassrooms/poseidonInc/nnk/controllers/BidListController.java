@@ -47,7 +47,7 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
     	if (!result.hasErrors()) {
-    		bidListService.createBid(bid);
+    		bidListService.create(bid);
     		return "redirect:/bidList/list";
     	}
         return "bidList/add";
@@ -55,7 +55,7 @@ public class BidListController {
 
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
+    	BidList bidList = bidListService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
     	model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
@@ -63,14 +63,14 @@ public class BidListController {
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
-    	bidListService.updateBid(bidList);
+    	bidListService.update(bidList);
         return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-    	BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
-    	bidListService.deleteBid(bidList);
+    	BidList bidList = bidListService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
+    	bidListService.delete(bidList);
         return "redirect:/bidList/list";
     }
 }

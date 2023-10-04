@@ -12,25 +12,25 @@ import com.openclassrooms.poseidonInc.nnk.repositories.RatingRepository;
 @Service
 public class RatingService {
 	@Autowired
-	private RatingRepository ratingRepo;
+	private RatingRepository ratingRepository;
 
 	public Rating create(Rating newRating) {
-		return ratingRepo.save(newRating);
+		return ratingRepository.save(newRating);
 	}
 	
 	public Optional<Rating> read(Integer id) {
-		return ratingRepo.findById(id);
+		return ratingRepository.findById(id);
 	}
 	
 	public void delete(Integer id){
-		ratingRepo.deleteById(id);
+		ratingRepository.deleteById(id);
 	}
 	
 	public Rating update(Rating updatedRating) {
-		return ratingRepo.save(updatedRating);
+		return ratingRepository.save(updatedRating);
 	}
 	
-	public List<Rating> getAll() {
-		return ratingRepo.findAll();
+	public List<Rating> findAll() {
+		return ratingRepository.findAll();
 	}
 }

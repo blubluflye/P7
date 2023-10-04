@@ -52,7 +52,7 @@ public class TradeController {
 
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	Trade trade = tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
+    	Trade trade = tradeService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     	model.addAttribute("trade", trade);
         return "trade/update";
     }
@@ -66,7 +66,7 @@ public class TradeController {
 
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-    	tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
+    	tradeService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     	tradeService.delete(id);
         return "redirect:/trade/list";
     }

@@ -19,29 +19,23 @@ public class BidListService {
 		return bidListRepository.findAll();
 	}
 	
-	public BidList createBid(BidList bidList) {
+	public BidList create(BidList bidList) {
 		return bidListRepository.save(bidList);
 	}
 	
-	public BidList readBid(Integer id) {
-		Optional<BidList> result = bidListRepository.findById(id);
-		if (result.isPresent())
-			return result.get();
-		return null;
-	}
 	
-	public BidList updateBid(BidList bidList) {
+	public BidList update(BidList bidList) {
 		if (bidListRepository.findById(bidList.getBidListId()).isPresent())
 			return bidListRepository.save(bidList);
 		return null;
 	}
 	
-	public void deleteBid(BidList bidList) {
+	public void delete(BidList bidList) {
 		if (bidListRepository.findById(bidList.getBidListId()).isPresent())
 			bidListRepository.delete(bidList);
 	}
 
-	public Optional<BidList> findById(Integer id) {
+	public Optional<BidList> read(Integer id) {
 		return bidListRepository.findById(id);
 	}
 }

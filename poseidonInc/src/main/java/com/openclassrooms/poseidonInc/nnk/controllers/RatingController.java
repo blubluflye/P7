@@ -32,7 +32,7 @@ public class RatingController {
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
-    	model.addAttribute("ratings",ratingService.getAll());
+    	model.addAttribute("ratings",ratingService.findAll());
         return "rating/list";
     }
 

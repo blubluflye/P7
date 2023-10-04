@@ -53,7 +53,7 @@ public class RuleNameController {
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	RuleName ruleName = ruleNameService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	RuleName ruleName = ruleNameService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
     	model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
@@ -67,7 +67,7 @@ public class RuleNameController {
 
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-    	ruleNameService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	ruleNameService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
     	ruleNameService.delete(id);
         return "redirect:/ruleName/list";
     }

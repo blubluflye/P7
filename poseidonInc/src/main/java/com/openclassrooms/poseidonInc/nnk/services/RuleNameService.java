@@ -25,7 +25,7 @@ public class RuleNameService {
 		return ruleNameRepository.save(ruleName);
 	}
 
-	public  Optional<RuleName> findById(Integer id) {
+	public  Optional<RuleName> read(Integer id) {
 		return ruleNameRepository.findById(id);
 	}
 

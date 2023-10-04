@@ -33,7 +33,7 @@ public class TradeService {
 		return tradeRepository.save(trade);
 	}
 
-	public  Optional<Trade> findById(Integer id) {
+	public  Optional<Trade> read(Integer id) {
 		// TODO Auto-generated method stub
 		return tradeRepository.findById(id);
 	}
