@@ -45,7 +45,6 @@ public class TradeController {
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
     	if (!result.hasErrors()) {
     		tradeService.create(trade);
-    		model.addAttribute("trades", tradeService.findAll());
     		return "redirect:/trade/list";
     	}	
         return "trade/add";
@@ -62,7 +61,6 @@ public class TradeController {
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
                              BindingResult result, Model model) {
     	tradeService.update(trade);
-    	model.addAttribute("trades", tradeService.findAll());
         return "redirect:/trade/list";
     }
 
@@ -70,7 +68,6 @@ public class TradeController {
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
     	tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     	tradeService.delete(id);
-    	model.addAttribute("trades", tradeService.findAll());
         return "redirect:/trade/list";
     }
 }

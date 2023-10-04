@@ -46,7 +46,6 @@ public class RatingController {
         // TODO: check data valid and save to db, after saving return Rating list
     	if (!result.hasErrors()) {
     		ratingService.create(rating);
-    		model.addAttribute("ratings",ratingService.getAll());
     		return "redirect:/rating/list";
     	}
         return "rating/add";
@@ -65,7 +64,6 @@ public class RatingController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rating and return Rating list
     	ratingService.update(rating);
-		model.addAttribute("ratings",ratingService.getAll());
         return "redirect:/rating/list";
     }
 
@@ -74,7 +72,6 @@ public class RatingController {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
     	ratingService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
     	ratingService.delete(id);
-    	model.addAttribute("ratings",ratingService.getAll());
         return "redirect:/rating/list";
     }
 }

@@ -41,7 +41,6 @@ public class UserController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             userRepository.save(user);
-            model.addAttribute("users", userRepository.findAll());
             return "redirect:/user/list";
         }
         return "user/add";
@@ -66,7 +65,6 @@ public class UserController {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);
         userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
         return "redirect:/user/list";
     }
 
@@ -74,7 +72,6 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userRepository.delete(user);
-        model.addAttribute("users", userRepository.findAll());
         return "redirect:/user/list";
     }
 }

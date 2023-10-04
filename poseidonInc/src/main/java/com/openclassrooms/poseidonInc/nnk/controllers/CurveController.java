@@ -45,7 +45,6 @@ public class CurveController {
         // TODO: check data valid and save to db, after saving return Curve list
     	if (!result.hasErrors()) {
     		curvePointService.create(curvePoint);
-    		model.addAttribute("curvePoints",curvePointService.findAll());
     		return "redirect:/curvePoint/list";
     	}
     	
@@ -64,7 +63,6 @@ public class CurveController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
     	curvePointService.update(curvePoint);
-		model.addAttribute("curvePoints",curvePointService.findAll());
         return "redirect:/curvePoint/list";
     }
 
@@ -72,7 +70,6 @@ public class CurveController {
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
     	curvePointService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
     	curvePointService.delete(id);
-		model.addAttribute("curvePoints",curvePointService.findAll());
         return "redirect:/curvePoint/list";
     }
 }
