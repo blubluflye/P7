@@ -42,12 +42,10 @@ public class CurveController {
 
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Curve list
     	if (!result.hasErrors()) {
     		curvePointService.create(curvePoint);
     		return "redirect:/curvePoint/list";
     	}
-    	
         return "curvePoint/add";
     }
 
@@ -61,15 +59,14 @@ public class CurveController {
     @PostMapping("/curvePoint/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Curve and return Curve list
     	curvePointService.update(curvePoint);
         return "redirect:/curvePoint/list";
     }
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-    	curvePointService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
-    	curvePointService.delete(id);
+    	CurvePoint curvePoint = curvePointService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid CurvePoint Id:" + id));
+    	curvePointService.delete(curvePoint);
         return "redirect:/curvePoint/list";
     }
 }

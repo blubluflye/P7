@@ -25,14 +25,11 @@ public class BidListService {
 	
 	
 	public BidList update(BidList bidList) {
-		if (bidListRepository.findById(bidList.getBidListId()).isPresent())
-			return bidListRepository.save(bidList);
-		return null;
+		return bidListRepository.save(bidList);
 	}
 	
 	public void delete(BidList bidList) {
-		if (bidListRepository.findById(bidList.getBidListId()).isPresent())
-			bidListRepository.delete(bidList);
+		bidListRepository.delete(bidList);
 	}
 
 	public Optional<BidList> read(Integer id) {

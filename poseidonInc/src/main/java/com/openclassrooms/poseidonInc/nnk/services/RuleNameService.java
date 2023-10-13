@@ -33,8 +33,8 @@ public class RuleNameService {
 		return ruleNameRepository.save(ruleName);		
 	}
 
-	public void delete(Integer id) {
-		ruleNameRepository.deleteById(id);
+	public void delete(RuleName ruleName) {
+		ruleNameRepository.delete(ruleName);
 	}
 	
 	

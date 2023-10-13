@@ -22,8 +22,8 @@ public class RatingService {
 		return ratingRepository.findById(id);
 	}
 	
-	public void delete(Integer id){
-		ratingRepository.deleteById(id);
+	public void delete(Rating rating){
+		ratingRepository.delete(rating);
 	}
 	
 	public Rating update(Rating updatedRating) {

@@ -33,8 +33,8 @@ public class CurvePointService {
 		return curvePointRepository.save(curvePoint);
 	}
 
-	public void delete(Integer id) {
-		curvePointRepository.deleteById(id);
+	public void delete(CurvePoint curvePoint) {
+		curvePointRepository.delete(curvePoint);
 	}
 
 }

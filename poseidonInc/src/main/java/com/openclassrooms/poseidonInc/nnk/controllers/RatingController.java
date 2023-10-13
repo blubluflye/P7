@@ -70,8 +70,8 @@ public class RatingController {
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
-    	ratingService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
-    	ratingService.delete(id);
+    	Rating rating = ratingService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+    	ratingService.delete(rating);
         return "redirect:/rating/list";
     }
 }

@@ -67,8 +67,8 @@ public class RuleNameController {
 
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-    	ruleNameService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
-    	ruleNameService.delete(id);
+    	RuleName ruleName = ruleNameService.read(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	ruleNameService.delete(ruleName);
         return "redirect:/ruleName/list";
     }
 }

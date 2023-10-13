@@ -25,8 +25,8 @@ public class TradeService {
 		return tradeRepository.save(trade);
 	}
 
-	public void delete(Integer id) {
-		tradeRepository.deleteById(id);
+	public void delete(Trade trade) {
+		tradeRepository.delete(trade);
 	}
 
 	public @Valid Trade update(@Valid Trade trade) {
