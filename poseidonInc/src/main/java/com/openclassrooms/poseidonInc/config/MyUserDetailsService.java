@@ -21,17 +21,21 @@ public class MyUserDetailsService implements UserDetailsService{
 	@Autowired
 	private UserRepository userRepo;
 
+	/**
+	 * 	used to get user information
+	 * 
+	 * 	@param String username
+	 * 
+	 * 	@return UserDetails - the user informations
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		Optional<User> userByUsername = userRepo.findByUsername(username);
 		if (!userByUsername.isPresent()) {
-			//throw
 			throw new UsernameNotFoundException("Invalid credentials!");
 		}
 		User user = userByUsername.get();
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		//add role as authority ( "ROLE_" + role from user ? to test)
 		grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
 		return new MySecurityUser(user.getUsername(), user.getPassword(), true, true, true, true, grantedAuthorities, user.getUsername());
 	}

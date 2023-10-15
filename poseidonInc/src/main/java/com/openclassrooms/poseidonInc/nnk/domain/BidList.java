@@ -17,7 +17,6 @@ import lombok.Data;
 @Entity
 @Table(name = "bidlist")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
 	@Id
 	@Column(name = "bidlistid")
     @GeneratedValue(strategy= GenerationType.AUTO)

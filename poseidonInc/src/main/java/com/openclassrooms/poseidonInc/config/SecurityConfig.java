@@ -23,6 +23,13 @@ public class SecurityConfig {
 	@Autowired
 	UserDetailsService userDetailsService;
 	
+	/**
+	 * used to create the bean SecurityFilterChain.
+	 *
+	 * @param HttpSecurity
+	 * 
+	 * @return SecurityFilterChain
+	 */
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
@@ -42,12 +49,22 @@ public class SecurityConfig {
         return http.build();
 	}
 	
+	/**
+	 * 
+	 * used to create the bean passwordEncoder to encode password we give when logging in and adding users. Use BCryptPasswordEncoder.
+	 * 
+	 * @return PasswordEncoder
+	 */
 	@Bean
 	public static PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
+	/**
+	 * 
+	 * used to create a bean that send a success message  in system.out if we login successfully.
+	 * 
+	 */
 	@Bean
 	ApplicationListener<AuthenticationSuccessEvent> successEvent() {
 		return event -> {
@@ -55,15 +72,15 @@ public class SecurityConfig {
 		};
 	}
 	
+	/**
+	 * 
+	 * used to create a bean that send a failure message in system.out if we fail to login.
+	 * 
+	 */
 	@Bean
 	ApplicationListener<AuthenticationFailureBadCredentialsEvent> failureEvent() {
 		return event -> {
 			System.err.println("Bad Credentials Login " + event.getAuthentication().getClass().getSimpleName() + " - " + event.getAuthentication().getName());
 		};
 	}
-	
-	@Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
 }
