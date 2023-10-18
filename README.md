@@ -31,7 +31,7 @@ written in the pom.xml:
 * MYSQL installed on your computer.
 * setting 2 environment variable:
   * Your MYSQL acces rights with the name DATABASE_USERNAME and DATABASE_PASSWORD.
-* create empty mysql database called demo with url jdbc:mysql://localhost:3306/demo u can change the localhost number in the applicationProperties file if needed.
+* create empty mysql database called demo with url jdbc:mysql://localhost:3306/demo. You can change the localhost number in the applicationProperties file if needed.
 * In MYSQL after creating the database execute data.sql in database demo.
 
 ### Executing program
